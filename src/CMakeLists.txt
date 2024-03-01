@@ -25,7 +25,10 @@ if (${BUILD_SHARED_LIBS})
     endif(WIN32)
 endif(${BUILD_SHARED_LIBS})
 
-add_definitions(-DRAPIDJSON_SSE2)
+if(NOT APPLE)
+    # breaks multiarch builds
+    add_definitions(-DRAPIDJSON_SSE2)
+endif()
 
 if(WIN32)
     add_definitions(-DDISCORD_WINDOWS)
